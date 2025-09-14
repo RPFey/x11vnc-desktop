@@ -380,7 +380,7 @@ if __name__ == "__main__":
         stderr_write("Error: Could not find a free port.\n")
         sys.exit(-1)
     envs += ["-p", port_ssh + ":22"]
-
+    
     # Create directory .ssh if not exist
     if not os.path.exists(homedir + "/.ssh"):
         os.mkdir(homedir + "/.ssh")
@@ -393,8 +393,7 @@ if __name__ == "__main__":
 
     devices = []
     if args.nvidia:
-        for d in glob.glob('/dev/nvidia*'):
-            devices += ['--device', d + ':' + d]
+        envs += ["--runtime=nvidia", "-e", "NVIDIA_VISIBLE_DEVICES=all", "-e", "NVIDIA_DRIVER_CAPABILITIES=all"]
 
     # Start the docker image in the background and pipe the stderr
     port_http = str(find_free_port(6080, 50))

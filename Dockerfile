@@ -7,8 +7,8 @@
 # Authors:
 # Xiangmin Jiao <xmjiao@gmail.com>
 
-FROM ubuntu:22.04
-LABEL maintainer Xiangmin Jiao <xmjiao@gmail.com>
+FROM nvidia/cuda:12.4.0-devel-ubuntu22.04
+# LABEL maintainer Boshu Lei
 
 ARG DOCKER_LANG=en_US
 ARG DOCKER_TIMEZONE=America/New_York
